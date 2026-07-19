@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap-5.3.8/dist/css/bootstrap.min.css">
-    <!-- آیکون برنامه -->
-    <link rel="icon" href="https://s6.uupload.ir/files/icon_6s1i.jpg">
+    <link rel="icon" href="img/icon.jpg">
     <title>شعرینو | شعر و ادب پارسی</title>
 
     <!-- ============ GOOGLE FONTS ============ -->
@@ -15,8 +14,7 @@
 
     <style>
         :root {
-            /* پس‌زمینه پیش‌فرض – همون عکسی که دادی */
-            --bg-image: url('https://s6.uupload.ir/files/bg-image_bq04.jpg');
+            --bg-image: url('img/bg-image.jpg'); /* تصویر پیش‌فرض – می‌توانید مسیر را اینجا تغییر دهید */
             --gold: #d4a745;
             --gold-light: #e8c97a;
             --gold-dark: #b8861e;
@@ -376,7 +374,6 @@
     <main class="main-wrapper">
         <div class="poetry-grid">
 
-            <!-- شعر اول -->
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر اول</span>
@@ -405,11 +402,10 @@
 با لبانت قطره قطره خورده جام شوکران</div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
-                    <audio src="https://uupload.ir/files/text1_n942.mp3" controls></audio>
+                    <audio src="audio/text1.mp3" controls></audio>
                 </div>
             </article>
 
-            <!-- شعر دوم -->
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر دوم</span>
@@ -432,11 +428,10 @@
                 چرا دل ز دستان پاکم ربودی...؟</div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
-                    <audio src="https://uupload.ir/files/text2_kzyo.mp3" controls></audio>
+                    <audio src="audio/text2.mp3" controls></audio>
                 </div>
             </article>
 
-            <!-- شعر سوم -->
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر سوم</span>
@@ -453,11 +448,10 @@
                 <br><small style="color:#d4a745;">قلم نگار: یوسف رسولی زاده</small></div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
-                    <audio src="https://uupload.ir/files/text3_uxkm.mp3" controls></audio>
+                    <audio src="audio/text3.mp3" controls></audio>
                 </div>
             </article>
 
-            <!-- شعر چهارم -->
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر چهارم</span>
@@ -467,12 +461,10 @@
                 تویی که صد بها داری به ابروها و گیسو ها</div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
-                    <!-- <a href="https://uupload.ir/view/text4_7elf.mp3/" target="_blank"><img src="https://s6.uupload.ir/css/images/udl6.png" border="0" alt="دانلود فایل با لینک مستقیم" /></a> -->
-                    <audio src="https://uupload.ir/view/text4_7elf.mp3/" controls></audio>
+                    <audio src="audio/text4.mp3" controls></audio>
                 </div>
             </article>
 
-            <!-- نثر ادبی -->
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">نثر ادبی</span>
@@ -481,7 +473,7 @@
                 ما با تمام وجود می‌چسبیم به لحظاتی که انگار جاودانه‌اند، غرق در نگاه‌های پر از امید و حرف‌های ناتمام....</div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
-                    <audio src="https://uupload.ir/files/text5_vbv3.mp3" controls></audio>
+                    <audio src="audio/text5.mp3" controls></audio>
                 </div>
             </article>
         </div>
@@ -491,8 +483,8 @@
     <footer class="footer-section">
         <p style="color: var(--gold-light);">✧ نویسنده این دل‌نوازها : استاد رسولی زاده ✧</p>
         <div class="footer-links">
-            <a href="tel:+98">📞 092111111</a>
-            <a href="#">💬 بله</a>
+            <a href="tel:+989937857454">📞 09937857454</a>
+            <a href="https://web.bale.ai/@Rasoli4030">💬 بله</a>
             <a href="#">📱 شبکه‌های داخلی</a>
         </div>
     </footer>
@@ -535,14 +527,14 @@
         const fileInput = document.getElementById('bgFileInput');
         const urlInput = document.getElementById('bgUrlInput');
 
-        const DEFAULT_BG = "url('https://s6.uupload.ir/files/bg-image_bq04.jpg')";
+        const DEFAULT_BG = "url('img/bg-image.jpg')";
 
         // Toggle panel
         bgChangerBtn.addEventListener('click', () => {
             bgPanel.classList.toggle('active');
         });
 
-        // Close panel when clicking outside
+        // Close panel when clicking outside (optional)
         document.addEventListener('click', (e) => {
             if (!bgPanel.contains(e.target) && e.target !== bgChangerBtn) {
                 bgPanel.classList.remove('active');
