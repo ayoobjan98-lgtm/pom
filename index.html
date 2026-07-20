@@ -165,20 +165,27 @@
             position: relative;
             overflow: hidden;
 
-            /* حالت اولیه برای انیمیشن اسکرول */
+            /* حالت اولیه برای انیمیشن اسکرول پیشرفته */
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(40px) scale(0.96);
             will-change: opacity, transform;
         }
 
         /* کلاسی که با جاوااسکریپت اضافه می‌شود */
         .poem-card.revealed {
-            animation: fadeInUp 0.7s ease-out forwards;
+            animation: fadeInUpAdvanced 0.7s ease-out forwards;
+            animation-delay: calc(var(--i) * 0.12s);
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUpAdvanced {
+            0% { 
+                opacity: 0; 
+                transform: translateY(40px) scale(0.96); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
 
         .poem-card:hover {
@@ -189,7 +196,7 @@
 
         /* برای آنکه hover تداخل نکند، وقتی revealed هست hover کمی جابجا شود */
         .poem-card.revealed:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1);
         }
 
         .card-accent {
@@ -223,8 +230,55 @@
             border: 1px solid rgba(212,167,69,0.3);
         }
 
-        .poem-text {
-            font-size: 1rem;
+        /* ============ استایل بخش details / summary ============ */
+        .poem-text-wrapper {
+            margin-top: 0.5rem;
+        }
+
+        .poem-text-wrapper details {
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(212,167,69,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .poem-text-wrapper details[open] {
+            background: rgba(0,0,0,0.35);
+            border-color: rgba(212,167,69,0.5);
+        }
+
+        .poem-text-wrapper summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+            position: relative;
+            outline: none;
+        }
+
+        .poem-text-wrapper summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .poem-text-wrapper summary::before {
+            content: '◀';
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .poem-text-wrapper details[open] summary::before {
+            transform: rotate(-90deg);
+        }
+
+        .poem-text-wrapper .poem-text {
+            padding: 0 1.5rem 1.2rem;
             line-height: 2.5;
             color: #f5e7d3;
             text-shadow: 0 1px 4px rgba(0,0,0,0.6);
@@ -301,7 +355,10 @@
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر اول</span>
-                <div class="poem-text">یاد روزی که به من گفتی عزیز مهربان
+                <div class="poem-text-wrapper">
+                    <details>
+                        <summary>📜 نمایش متن شعر</summary>
+                        <div class="poem-text">یاد روزی که به من گفتی عزیز مهربان
 ای که همچون ماه تابانی به جان آسمان
 <br>
 گر ندارم در وجودم غیر ممکن‌ها ولی
@@ -324,6 +381,8 @@
 <br>
 تو نمی‌دانی که این یوسف چه حد مشتاق توست
 با لبانت قطره قطره خورده جام شوکران</div>
+                    </details>
+                </div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
                     <audio src="audio/text1.mp3" controls></audio>
@@ -333,23 +392,28 @@
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر دوم</span>
-                <div class="poem-text"><strong>چراغی که در باغ خاموش شد</strong><br>
-                تو که بهتری را ز من دیده بودی
-                چرا دل ز دستان پاکم ربودی؟
-                <br>تو رفتی و هرگز نگاهی نکردی
-                و من چون همیشه نوشتم سرودی!
-                <br>دلم خون و سر درد، ندانی دلیلش؟
-                بیا تا بگویم علل را به زودی...
-                <br>نبودت شده درد و ماتم برایم
-                بطوریکه هربار به ذهنم کبودی
-                <br>برایت به دنبال قافیّه هستم
-                و تا لحظه ای که رسیدم به دودی؛
-                <br>به فکرم نمی گنجد این که تو رفتی
-                ولی حرف حق را بگویم تو بردی...
-                <br>به کوچه به بن بست رسیدم عزیزم
-                ولی تو نبودی نبودی نبودی!!!
-                <br>رسیدم به بیتی که یوسف نوشته
-                چرا دل ز دستان پاکم ربودی...؟</div>
+                <div class="poem-text-wrapper">
+                    <details>
+                        <summary>📜 نمایش متن شعر</summary>
+                        <div class="poem-text"><strong>چراغی که در باغ خاموش شد</strong><br>
+                        تو که بهتری را ز من دیده بودی
+                        چرا دل ز دستان پاکم ربودی؟
+                        <br>تو رفتی و هرگز نگاهی نکردی
+                        و من چون همیشه نوشتم سرودی!
+                        <br>دلم خون و سر درد، ندانی دلیلش؟
+                        بیا تا بگویم علل را به زودی...
+                        <br>نبودت شده درد و ماتم برایم
+                        بطوریکه هربار به ذهنم کبودی
+                        <br>برایت به دنبال قافیّه هستم
+                        و تا لحظه ای که رسیدم به دودی؛
+                        <br>به فکرم نمی گنجد این که تو رفتی
+                        ولی حرف حق را بگویم تو بردی...
+                        <br>به کوچه به بن بست رسیدم عزیزم
+                        ولی تو نبودی نبودی نبودی!!!
+                        <br>رسیدم به بیتی که یوسف نوشته
+                        چرا دل ز دستان پاکم ربودی...؟</div>
+                    </details>
+                </div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
                     <audio src="audio/text2.mp3" controls></audio>
@@ -359,17 +423,22 @@
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر سوم</span>
-                <div class="poem-text">من رهایم چون عقابی در هجوم آسمان
-                یا که در بندم شبیه طوطی جان در کمان
-                <br>زندگی ام بی پناه است روز و شب در اوج غم
-                هی! چه گویم؟! خاطراتم میکند اشکم روان
-                <br>در اتاق پنج در پنج ۱۰۱ روز و شب
-                میروم تا اوج افکار خیانت وای جان
-                <br>مصطفی و طیب و عرفان و مهیار و حسن
-                معنی این زندگی هستند روز بی نشان
-                <br>شعر این یوسف به پایان میرود اما چه سود
-                وقتی آرام جهانش رفته با گرز گران
-                <br><small style="color:#d4a745;">قلم نگار: یوسف رسولی زاده</small></div>
+                <div class="poem-text-wrapper">
+                    <details>
+                        <summary>📜 نمایش متن شعر</summary>
+                        <div class="poem-text">من رهایم چون عقابی در هجوم آسمان
+                        یا که در بندم شبیه طوطی جان در کمان
+                        <br>زندگی ام بی پناه است روز و شب در اوج غم
+                        هی! چه گویم؟! خاطراتم میکند اشکم روان
+                        <br>در اتاق پنج در پنج ۱۰۱ روز و شب
+                        میروم تا اوج افکار خیانت وای جان
+                        <br>مصطفی و طیب و عرفان و مهیار و حسن
+                        معنی این زندگی هستند روز بی نشان
+                        <br>شعر این یوسف به پایان میرود اما چه سود
+                        وقتی آرام جهانش رفته با گرز گران
+                        <br><small style="color:#d4a745;">قلم نگار: یوسف رسولی زاده</small></div>
+                    </details>
+                </div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
                     <audio src="audio/text3.mp3" controls></audio>
@@ -379,10 +448,15 @@
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">شعر چهارم</span>
-                <div class="poem-text">شبی با عاشقی دیگر کنار و زیر دوربین ها
-                برایت شعر می گفتم و تشبیهی به شب بوها
-                <br>عزیزم ناتوان است این وجودم بهر توصیفت
-                تویی که صد بها داری به ابروها و گیسو ها</div>
+                <div class="poem-text-wrapper">
+                    <details>
+                        <summary>📜 نمایش متن شعر</summary>
+                        <div class="poem-text">شبی با عاشقی دیگر کنار و زیر دوربین ها
+                        برایت شعر می گفتم و تشبیهی به شب بوها
+                        <br>عزیزم ناتوان است این وجودم بهر توصیفت
+                        تویی که صد بها داری به ابروها و گیسو ها</div>
+                    </details>
+                </div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
                     <audio src="audio/text4.mp3" controls></audio>
@@ -392,9 +466,14 @@
             <article class="poem-card">
                 <div class="card-accent"></div>
                 <span class="poem-number">نثر ادبی</span>
-                <div class="poem-text">عشق اول... مثل نسیمی که برای اولین بار گلبرگ‌های قلب را لمس می‌کند، لطیف و تازه، اما ناپایدار.
-                مثل شعله‌ای کوچک که در تاریکی شب می‌درخشد، گرم و امیدبخش، اما فانی.
-                ما با تمام وجود می‌چسبیم به لحظاتی که انگار جاودانه‌اند، غرق در نگاه‌های پر از امید و حرف‌های ناتمام....</div>
+                <div class="poem-text-wrapper">
+                    <details>
+                        <summary>📜 نمایش متن نثر</summary>
+                        <div class="poem-text">عشق اول... مثل نسیمی که برای اولین بار گلبرگ‌های قلب را لمس می‌کند، لطیف و تازه، اما ناپایدار.
+                        مثل شعله‌ای کوچک که در تاریکی شب می‌درخشد، گرم و امیدبخش، اما فانی.
+                        ما با تمام وجود می‌چسبیم به لحظاتی که انگار جاودانه‌اند، غرق در نگاه‌های پر از امید و حرف‌های ناتمام....</div>
+                    </details>
+                </div>
                 <div class="audio-section">
                     <span class="audio-label">🎵 صوت استاد</span>
                     <audio src="audio/text5.mp3" controls></audio>
@@ -432,21 +511,25 @@
             }
         })();
 
-        // ============ SCROLL REVEAL (انیمیشن هنگام اسکرول) ============
+        // ============ SCROLL REVEAL (پیشرفته با تأخیر متوالی) ============
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.poem-card');
+            
+            // اختصاص ایندکس برای استگرد
+            cards.forEach((card, index) => {
+                card.style.setProperty('--i', index);
+            });
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('revealed');
-                        // برای اجرای یک‌باره انیمیشن، می‌توان observer را غیرفعال کرد
-                        observer.unobserve(entry.target);
+                        observer.unobserve(entry.target); // فقط یک‌بار اجرا شود
                     }
                 });
             }, {
-                threshold: 0.15,
-                rootMargin: '0px 0px -30px 0px'
+                threshold: 0.2,
+                rootMargin: '0px 0px -20px 0px'
             });
 
             cards.forEach(card => {
